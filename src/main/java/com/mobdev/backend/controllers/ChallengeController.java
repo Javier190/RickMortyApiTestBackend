@@ -18,7 +18,7 @@ public class ChallengeController {
 	
 	@RequestMapping("/hello")
 	public String testHello() {
-		return "Metodo de prueba funciona!";
+		return "Metodo de prueba";
 	}
 	
 	@RequestMapping("/getAllCharacters")
@@ -31,7 +31,7 @@ public class ChallengeController {
 		return result;
 		
 	}
-	//Este funciona pero no es buen practica
+
 	@GetMapping("/getCharacterbyIds/{id}")
 	public String getCharacterbyIds(@PathVariable int id) {
 		
@@ -42,9 +42,7 @@ public class ChallengeController {
 		return result;
 	}
 	
-	
-	
-	//reemplazando por servicio
+	//Mismo metodo de arriba pero llamando service
 	@GetMapping("/getCharacterbyId/{id}")
 	public ResponseEntity<Object> getCharacterbyId(@PathVariable int id) {
 		return challengeService.getCharacterbyId(id);
