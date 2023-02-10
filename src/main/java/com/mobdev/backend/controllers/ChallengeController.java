@@ -16,6 +16,8 @@ public class ChallengeController {
 	@Autowired
 	ChallengeService challengeService;
 	
+	RestTemplate restTemplate = new RestTemplate();
+	
 	@RequestMapping("/hello")
 	public String testHello() {
 		return "Metodo de prueba";
@@ -25,7 +27,6 @@ public class ChallengeController {
 	public String getAllCharacters() {
 		
 		String uri = "https://rickandmortyapi.com/api/character";
-		RestTemplate restTemplate = new RestTemplate();
 		String result = restTemplate.getForObject(uri, String.class);
 		
 		return result;
@@ -36,16 +37,20 @@ public class ChallengeController {
 	public String getCharacterbyIds(@PathVariable int id) {
 		
 		String uri = "https://rickandmortyapi.com/api/character/"+id;
-		RestTemplate restTemplate = new RestTemplate();
 		String result = restTemplate.getForObject(uri, String.class);
 		
 		return result;
 	}
 	
 	//Mismo metodo de arriba pero llamando service
-	@GetMapping("/getCharacterbyId/{id}")
+	@GetMapping("/characterById/{id}")
 	public ResponseEntity<Object> getCharacterbyId(@PathVariable int id) {
 		return challengeService.getCharacterbyId(id);
+	}
+	
+	@GetMapping("/locationById/{id}")
+	public ResponseEntity<Object> getLocationbyId(@PathVariable int id) {
+		return challengeService.getLocations(id);
 	}
 
 	

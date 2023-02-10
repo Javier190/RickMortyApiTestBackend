@@ -36,5 +36,36 @@ public class ChallengeService {
 		
 	}
 	
+	
+public ResponseEntity<Object> getLocations(int id) {
+		
+		String uri = "https://rickandmortyapi.com/api/location/"+id;
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<Object> result = null;
+		
+		try {
+			
+			result = restTemplate.getForEntity(uri, Object.class);
+			
+			if (result.hasBody() && result.getStatusCode() == HttpStatus.OK ) {
+				
+				return result;
+			} else {
+				System.err.println("Conection failed" + result.getStatusCode());
+				return null;
+			}
+			
+		} catch (Exception e) {
+			System.err.println("Request Failed");
+		}
+		
+		return result;
+		
+	}
+	
+	
+	
+	
+	
 
 }
