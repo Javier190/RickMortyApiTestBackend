@@ -8,4 +8,6 @@ and get the JSON response.
 Best practices, design pattern MVC, Testing , annotations, dependency injection and interface development was evaluated. 
 Results were evaluated with Postman.
 
+Java version:  openjdk 19.0.2 2023-01-17
+
 Nothing more relevant to say. 
