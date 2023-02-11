@@ -7,12 +7,12 @@ import org.springframework.web.client.RestTemplate;
 
 
 @Service
-public class ChallengeService {
+public class ChallengeService implements IChallenge {
 	
 	
 	public ResponseEntity<Object> getCharacterbyId(int id) {
 		
-		String uri = "https://rickandmortyapi.com/api/character/"+id;
+		String uri = "https://rickandmortyapi.com/api/character/"+id; //esto podria ir en un archivo de local.properties
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<Object> result = null;
 		
@@ -21,7 +21,7 @@ public class ChallengeService {
 			result = restTemplate.getForEntity(uri, Object.class);
 			
 			if (result.hasBody() && result.getStatusCode() == HttpStatus.OK ) {
-				
+			
 				return result;
 			} else {
 				System.err.println("Conection failed" + result.getStatusCode());
@@ -29,6 +29,7 @@ public class ChallengeService {
 			}
 			
 		} catch (Exception e) {
+			//aqui falta evaluar como manejar la excepcion pero no por consola, para que el cliente sepa que paso.
 			System.err.println("Request Failed");
 		}
 		
@@ -57,6 +58,7 @@ public ResponseEntity<Object> getLocations(int id) {
 			
 		} catch (Exception e) {
 			System.err.println("Request Failed");
+			//retornar un feedback al usuario que algo paso
 		}
 		
 		return result;

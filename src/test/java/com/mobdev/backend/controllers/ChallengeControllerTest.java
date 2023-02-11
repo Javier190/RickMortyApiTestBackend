@@ -8,6 +8,7 @@ import com.mobdev.backend.services.ChallengeService;
 
 class ChallengeControllerTest {
 	
+	//Tiene que ser mock no autowired para cuando se testee
 	@Autowired
 	ChallengeService challengeService;
 

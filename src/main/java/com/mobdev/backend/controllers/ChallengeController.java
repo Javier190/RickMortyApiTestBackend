@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.mobdev.backend.services.ChallengeService;
+import com.mobdev.backend.services.IChallenge;
 
 @RestController
 public class ChallengeController {
 	
 	@Autowired
-	ChallengeService challengeService;
+	private IChallenge iChallenge;
+	//private ChallengeService challengeService;	//En vez del service podria haber inyectado una interface aqui y asi se desacopla mas el codigo. Corregido
+	
 	
 	RestTemplate restTemplate = new RestTemplate();
 	
@@ -33,7 +36,7 @@ public class ChallengeController {
 		
 	}
 
-	@GetMapping("/getCharacterbyIds/{id}")
+	@GetMapping("/getCharacterbyIds/{id}")	//la ruta no deberia tener el get, pero lo dejo para entender
 	public String getCharacterbyIds(@PathVariable int id) {
 		
 		String uri = "https://rickandmortyapi.com/api/character/"+id;
@@ -43,16 +46,15 @@ public class ChallengeController {
 	}
 	
 	//Mismo metodo de arriba pero llamando service
-	@GetMapping("/characterById/{id}")
+	@GetMapping("/characterById/{id}")	
 	public ResponseEntity<Object> getCharacterbyId(@PathVariable int id) {
-		return challengeService.getCharacterbyId(id);
+		return iChallenge.getCharacterbyId(id);
 	}
 	
 	@GetMapping("/locationById/{id}")
 	public ResponseEntity<Object> getLocationbyId(@PathVariable int id) {
-		return challengeService.getLocations(id);
+		return iChallenge.getLocations(id);
 	}
 
-	
 
 }
