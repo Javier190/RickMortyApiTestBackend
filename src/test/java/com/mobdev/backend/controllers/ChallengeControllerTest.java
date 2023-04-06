@@ -3,30 +3,34 @@ package com.mobdev.backend.controllers;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.mobdev.backend.services.ChallengeService;
 
 class ChallengeControllerTest {
 	
-	//Tiene que ser mock no autowired para cuando se testee
+
 	@Autowired
 	ChallengeService challengeService;
 
+	@Mock
+	ChallengeService challengeService1;
+
 	@Test
 	void helloTest() {
-		
+
 		int val1 = 3;
 		int val2 = 9;
-		
+
 		assertEquals(12, val1+val2);
 	}
 	
 	@Test
 	void testGetCharacterbyIdMorty() {
-		
+
 		challengeService = new ChallengeService();
-	
-		assertEquals(true, this.challengeService.getCharacterbyId(2).getBody().toString().contains("Morty"));	
+
+		assertEquals(true, this.challengeService.getCharacterbyId(2).getBody().toString().contains("Morty"));
 	}
 	
 	@Test
@@ -36,5 +40,4 @@ class ChallengeControllerTest {
 		
 		assertEquals(true, this.challengeService.getCharacterbyId(5).getBody().toString().contains("Jerry Smith"));	
 	}
-
 }

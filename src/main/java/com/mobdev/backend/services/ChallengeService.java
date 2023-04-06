@@ -36,6 +36,10 @@ public class ChallengeService implements IChallenge {
 		return result;
 		
 	}
+
+	public String simulaService (int id){
+		return "";
+	}
 	
 	
 public ResponseEntity<Object> getLocations(int id) {

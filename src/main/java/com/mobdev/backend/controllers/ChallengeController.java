@@ -17,10 +17,13 @@ public class ChallengeController {
 	@Autowired
 	private IChallenge iChallenge;
 	//private ChallengeService challengeService;	//En vez del service podria haber inyectado una interface aqui y asi se desacopla mas el codigo. Corregido
-	
+
 	
 	RestTemplate restTemplate = new RestTemplate();
-	
+
+	public ChallengeController() {
+	}
+
 	@RequestMapping("/hello")
 	public String testHello() {
 		return "Metodo de prueba";
@@ -45,7 +48,7 @@ public class ChallengeController {
 		return result;
 	}
 	
-	//Mismo metodo de arriba pero llamando service
+	//Mismo metodo de arriba pero con Service
 	@GetMapping("/characterById/{id}")	
 	public ResponseEntity<Object> getCharacterbyId(@PathVariable int id) {
 		return iChallenge.getCharacterbyId(id);
